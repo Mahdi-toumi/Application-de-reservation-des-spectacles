@@ -3,6 +3,8 @@ package com.enicarthage.coulisses.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Lieu implements Parcelable {
     private Long id;
     private String nom;
@@ -11,12 +13,23 @@ public class Lieu implements Parcelable {
     private String ville;
     private Boolean active;
 
+    @SerializedName("positionGps")
+    private String positionGps ;
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getPositionGps() {
+        return positionGps;
+    }
+
+    public void setPositionGps(String positionGps) {
+        this.positionGps = positionGps;
     }
 
     public String getNom() {
@@ -66,6 +79,8 @@ public class Lieu implements Parcelable {
         capacite = in.readInt();
         ville = in.readString();
         active = in.readByte() != 0;
+        positionGps = in.readString();
+
     }
 
     public static final Creator<Lieu> CREATOR = new Creator<Lieu>() {
@@ -93,5 +108,6 @@ public class Lieu implements Parcelable {
         dest.writeInt(capacite);
         dest.writeString(ville);
         dest.writeByte((byte) (active ? 1 : 0));
+        dest.writeString(positionGps);
     }
 }

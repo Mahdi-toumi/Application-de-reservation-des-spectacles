@@ -8,12 +8,8 @@ public class RegisterRequest {
     private String motDePasse;
 
 
-    public RegisterRequest(String nom, String prenom, String email, String tel, String motDePasse) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.tel = tel;
-        this.motDePasse = motDePasse;
+    public RegisterRequest() {
+
     }
 
     public String getNom() {

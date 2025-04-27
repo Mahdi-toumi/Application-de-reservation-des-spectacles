@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background with subtle border -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/dark_primary"/>
+            <corners android:radius="12dp"/>
+            <corners android:height="20dp"/>
+            <stroke
+                android:width="1dp"
+                android:color="#30FFFFFF"/>
+        </shape>
+    </item>
+
+    <!-- Top subtle highlight -->
+    <item
+        android:bottom="48dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="90"
+                android:startColor="#10FFFFFF"
+                android:endColor="#00FFFFFF"/>
+            <corners
+                android:radius="12dp"
+                android:topLeftRadius="12dp"
+                android:topRightRadius="12dp"
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp"/>
+        </shape>
+    </item>
+
+    <!-- Accent glow effect at bottom -->
+    <item
+        android:top="36dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="90"
+                android:startColor="@color/accent_color"
+                android:centerColor="@color/accent_color"
+                android:endColor="@color/accent_color"
+                android:centerY="0.3"/>
+            <corners
+                android:radius="12dp"
+                android:topLeftRadius="0dp"
+                android:topRightRadius="0dp"
+                android:bottomLeftRadius="12dp"
+                android:bottomRightRadius="12dp"/>
+        </shape>
+    </item>
+</layer-list>

@@ -17,6 +17,12 @@ public interface SpectacleApi {
     @GET("api/spectacle/{spectacleId}")
     Call<Spectacle> getSpectacleById(@Path("spectacleId") Long id);
 
-    @GET("spectacles/featured")
+    @GET("api/spectacle/featured")
     Call<List<Spectacle>> getFeaturedSpectacles();
+
+    @GET("api/spectacle/prixmin/{spectacleId}")
+    Call<Double> getBilletPrixMin(@Path("spectacleId") Long spectacleId);
+
+
+
 }

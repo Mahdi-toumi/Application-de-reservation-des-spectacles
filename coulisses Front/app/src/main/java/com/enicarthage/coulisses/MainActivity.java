@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         testGetSpectacleById(1L);
     }
 
+    /*
     private void testRegister() {
         RegisterRequest request = new RegisterRequest("Hama", "Salhi", "hama@gmail.com","92303698","Password");
         authApi.register(request).enqueue(new Callback<AuthenticationResponse>() {
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+*/
     private void testLogin() {
         AuthenticationRequest request = new AuthenticationRequest("hama@gmail.com", "newPassword123");
         authApi.login(request).enqueue(new Callback<AuthenticationResponse>() {

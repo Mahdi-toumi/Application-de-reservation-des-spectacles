@@ -1,5 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="green">#4CAF50</color>
+
+    <color name="dark_background">#FF121212</color>
+    <color name="dark_surface">#FF1E1E1E</color>
+
+    <color name="accent_transparent">#30FF5722</color>
+
+
+    <!-- Palette sombre/théâtre -->
+
+    <color name="dark_primary">#FF252525</color>
+    <color name="dark_secondary">#FF2D2D2D</color>
+
+    <!-- Texte -->
+    <color name="primary_text">#FFFFFFFF</color>
+    <color name="secondary_text">#B3FFFFFF</color>
+    <color name="hint_text">#80FFFFFF</color>
+
+    <!-- Couleurs d'accent -->
+    <color name="accent_color">#FF9C27B0</color>  <!-- Violet vibrant -->
+    <color name="accent_color_light">#33FF4081</color>
+    <color name="accent_color_dark">#FF7B1FA2</color>
+
+    <!-- Variantes pour chips -->
+    <color name="chip_genre">#FF3F51B5</color>    <!-- Indigo -->
+    <color name="chip_duration">#FF009688</color>  <!-- Teal -->
+    <color name="chip_age">#FFFF5722</color>       <!-- Orange -->
+
+    <!-- Diviseurs et bordures -->
+    <color name="divider_color">#1FFFFFFF</color>
+    <color name="border_light">#26FFFFFF</color>
+
+    <!-- États -->
+    <color name="pressed_state">#1FFFFFFF</color>
+    <color name="ripple_color">#33FFFFFF</color>
+
+    <!-- Overlays -->
+    <color name="image_overlay">#99000000</color>
+
+    <!-- Palette professionnelle -->
+
+    <color name="light_gray">#EDF2F4</color>
+    <color name="text_primary">#2B2D42</color>
+    <color name="text_secondary">#6C757D</color>
+    <color name="purple_500">#4CAF50</color>
+    <color name="input_stroke">#E0E0E0</color> <!-- Couleur de bordure normale -->
+    <color name="input_stroke_focused">#2B2D42</color> <!-- Couleur au focus -->
+    <color name="chip_background">#4CAF50</color>    <!-- Couleurs des bordures -->
+
+
+    <color name="chip_selected">#2B2D42</color>
+
+    <!-- Couleurs pour les chips -->
+    <color name="chip_unselected_bg">#EDF2F4</color> <!-- light_gray -->
+    <color name="chip_unselected_text">#2B2D42</color> <!-- dark_blue -->
+    <color name="chip_unselected_icon">#2B2D42</color>
+
+    <color name="chip_selected_bg">#2B2D42</color> <!-- dark_blue -->
+    <color name="chip_selected_text">#FFFFFF</color>
+    <color name="chip_selected_icon">#FFFFFF</color>
+
+    <!-- Couleurs pour TextInputLayout -->
+    <color name="input_border_normal">#E0E0E0</color> <!-- light_gray -->
+    <color name="input_border_focused">#2B2D42</color> <!-- dark_blue -->
+    <color name="input_hint_color">#8D99AE</color> <!-- medium_gray -->
+
+    <!-- Autres couleurs -->
+    <color name="primary_dark">#2B2D42</color> <!-- dark_blue -->
+    <color name="secondary">#8D99AE</color> <!-- medium_gray -->
+    <color name="accent">#EF233C</color> <!-- red for alerts -->
+
 </resources>

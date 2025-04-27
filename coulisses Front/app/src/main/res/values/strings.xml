@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Coulisses</string>
+    <string name="spectacle_image">Image du spectacle</string>
+    <string name="reserver">Réserver</string>
+    <string name="visiter_site">Visiter le site web</string>
+    <string name="reserver_maintenant">Réserver maintenant</string>
+    <string name="description_placeholder">Description détaillée du spectacle...</string>
+    <string name="partir_de_25">À partir de 25€</string>
+    <string name="rechercher">Rechercher...</string>
+    <string name="price_not_available">Prix non disponible</string>
+    <string name="no_website_available">Aucun site web disponible</string>
+    <string name="reserve_button_text">Réserver</string>
+    <string name="gallery">Gallery</string>
+    <string name="gallery_image">Image gallery</string>
+    <string name="about_spectacle">Description</string>
+    <string name="starting_from">À partir de</string>
+    <string name="book_now">Reservez maintenant</string>
+    <string name="no_tickets_available">Aucun billet disponible pour ce spectacle</string>
+    <string name="select_ticket">Veuillez sélectionner un billet</string>
+    <string name="loading_error">Erreur de chargement des billets</string>
+    <!-- Ajoute d'autres chaînes nécessaires -->
+
+
 </resources>

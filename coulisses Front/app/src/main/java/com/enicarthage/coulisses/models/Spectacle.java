@@ -5,6 +5,12 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+
 
 public class Spectacle implements Parcelable {
     private Long id;
@@ -107,6 +113,55 @@ public class Spectacle implements Parcelable {
     public void setSiteWeb(String siteWeb) {
         this.siteWeb = siteWeb;
     }
+
+    public String getFormattedDate() {
+        try {
+            // Supposons que la date reçue est sous le format "yyyy-MM-dd"
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+
+            Date parsedDate = inputFormat.parse(this.date);
+            return outputFormat.format(parsedDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return date; // En cas d'erreur, retourner la date brute
+        }
+    }
+
+    public String getFormattedDuree() {
+        try {
+            double d = duree.doubleValue();
+            int heures = (int) d;
+            int minutes = (int) ((d - heures) * 60);
+
+            if (heures > 0 && minutes > 0) {
+                return String.format(Locale.getDefault(), "%dh %02dm", heures, minutes);
+            } else if (heures > 0) {
+                return String.format(Locale.getDefault(), "%dh", heures);
+            } else {
+                return String.format(Locale.getDefault(), "%02dm", minutes);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return duree.toString();
+        }
+    }
+
+
+    public String getFormattedHeureDebut() {
+        try {
+            // heureDebut en BigDecimal, ex: 14.5 → 14:30
+            int heures = heureDebut.intValue(); // partie entière
+            int minutes = (int) ((heureDebut.remainder(BigDecimal.ONE)).multiply(new BigDecimal(60)).intValue());
+
+            return String.format(Locale.getDefault(), "%02d:%02d", heures, minutes);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return heureDebut.toString(); // fallback brut
+        }
+    }
+
+
 
     protected Spectacle(Parcel in) {
         id = in.readLong();

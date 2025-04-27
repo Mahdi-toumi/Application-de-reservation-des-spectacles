@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Comment souhaitez-vous continuer ?"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSignIn"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Se connecter"
+        app:icon="@drawable/ic_login"
+        app:iconGravity="textStart"
+        app:iconTint="@color/white"
+        app:strokeColor="@color/white"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSignUp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Créer un compte"
+        app:icon="@drawable/ic_register"
+        app:iconGravity="textStart"
+        app:iconTint="@color/white"
+        app:strokeColor="@color/white"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGuest"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Continuer en invité"
+        app:icon="@drawable/ic_guest"
+        app:iconGravity="textStart"
+        app:iconTint="@color/white"
+        app:strokeColor="@color/white"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Vos données seront utilisées pour la réservation"
+        android:textAlignment="center"
+        android:textColor="@color/secondary_text"
+        android:textSize="12sp"/>
+</LinearLayout>
