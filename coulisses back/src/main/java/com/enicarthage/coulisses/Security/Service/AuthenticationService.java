@@ -3,6 +3,7 @@ package com.enicarthage.coulisses.Security.Service;
 import com.enicarthage.coulisses.Security.DTOs.AuthenticationRequest;
 import com.enicarthage.coulisses.Security.DTOs.AuthenticationResponse;
 import com.enicarthage.coulisses.Security.DTOs.RegisterRequest;
+import com.enicarthage.coulisses.Security.Email.EmailService;
 import com.enicarthage.coulisses.Security.JwtUtil;
 import com.enicarthage.coulisses.User.Model.User;
 import com.enicarthage.coulisses.User.Repository.UserRepository;
@@ -20,6 +21,8 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
     private final AuthenticationManager authenticationManager;
+    private final EmailService emailService;
+
 
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder()
@@ -31,6 +34,8 @@ public class AuthenticationService {
                 .build();
 
         userRepository.save(user);
+        emailService.sendRegistrationEmail(user.getEmail(), user.getNom(), user.getPrenom());
+
 
         var jwtToken = jwtUtil.generateToken(user.getEmail());
         return AuthenticationResponse.builder()

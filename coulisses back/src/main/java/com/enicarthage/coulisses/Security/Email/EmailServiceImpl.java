@@ -14,11 +14,22 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public void sendPasswordResetEmail(String toEmail, String resetToken) {
         String subject = "Réinitialisation de votre mot de passe";
-        String resetLink = "http://votre-app.com/reset-password?token=" + resetToken;
-        String text = "Pour réinitialiser votre mot de passe, cliquez sur ce lien : " + resetLink;
+        String text = "Pour réinitialiser votre mot de passe, Entrer ce code dans l'application " ;
 
         sendEmail(toEmail, subject, text);
     }
+
+    @Override
+    public void sendRegistrationEmail(String toEmail, String nom, String prenom) {
+        String subject = "Bienvenue sur Coulisses 🎉";
+        String text = "Bonjour " + prenom + " " + nom + ",\n\n" +
+                "Votre compte a bien été créé sur l'application Coulisses.\n" +
+                "Merci pour votre inscription ! Nous sommes ravis de vous avoir parmi nous.\n\n" +
+                "À très bientôt,\n" +
+                "L'équipe Coulisses.";
+        sendEmail(toEmail, subject, text);
+    }
+
 
     @Override
     public void sendEmail(String to, String subject, String text) {

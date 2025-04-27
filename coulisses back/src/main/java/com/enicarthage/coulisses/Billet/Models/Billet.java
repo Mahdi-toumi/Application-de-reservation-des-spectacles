@@ -26,8 +26,19 @@ public class Billet {
     @Column(name = "VENDU", nullable = false)
     private String vendu;
 
+    @Column(name = "NOMBRE", nullable = false)
+    private int nombre;
+
     public Long getId() {
         return id;
+    }
+
+    public int getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(int nombre) {
+        this.nombre = nombre;
     }
 
     public void setId(Long id) {

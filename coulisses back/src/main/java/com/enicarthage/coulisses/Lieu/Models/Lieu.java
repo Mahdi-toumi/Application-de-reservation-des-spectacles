@@ -27,6 +27,17 @@ public class Lieu {
     @Column(name = "ACTIVE", nullable = false)
     private Boolean active;
 
+    @Column(name = "POSITION_GPS", nullable = false)
+    private String positionGps;
+
+    public String getPositionGps() {
+        return positionGps;
+    }
+
+    public void setPositionGps(String positionGps) {
+        this.positionGps = positionGps;
+    }
+
     public Long getId() {
         return id;
     }

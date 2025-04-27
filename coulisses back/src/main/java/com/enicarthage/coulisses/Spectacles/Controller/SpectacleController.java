@@ -29,5 +29,12 @@ public class SpectacleController {
         return spectacleService.getFeaturedSpectacles();
     }
 
+
+
+    @GetMapping("/prixmin/{spectacleId}")
+    public Double getBilletPrixMin(@PathVariable Long spectacleId) {
+        return spectacleService.getMinPrix(spectacleId) ;
+    }
+
 }
 
