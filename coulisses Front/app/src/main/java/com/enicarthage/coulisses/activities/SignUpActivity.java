@@ -14,11 +14,14 @@ import com.enicarthage.coulisses.models.Spectacle;
 import com.enicarthage.coulisses.network.ApiClient;
 import com.enicarthage.coulisses.network.AuthApi;
 import com.enicarthage.coulisses.util.BilletSelection;
+import com.enicarthage.coulisses.util.SessionManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -32,35 +35,25 @@ public class SignUpActivity extends AppCompatActivity {
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Récupérer les données
         spectacle = getIntent().getParcelableExtra("spectacle");
         selectedBillets = getIntent().getParcelableArrayListExtra("selected_billets");
 
-        // Initialiser les listeners
         binding.btnSignUp.setOnClickListener(v -> registerUser());
         binding.btnSignIn.setOnClickListener(v -> navigateToSignIn());
     }
 
     private void registerUser() {
+        if (!validateForm()) {
+            return;
+        }
+
+        // Récupérer les champs après validation
         String firstName = binding.etNom.getText().toString().trim();
         String lastName = binding.etPrenom.getText().toString().trim();
         String email = binding.etEmail.getText().toString().trim();
         String tel = binding.etTelephone.getText().toString().trim();
         String password = binding.etPassword.getText().toString().trim();
-        String confirmPassword = binding.etConfirmPassword.getText().toString().trim();
 
-        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || tel.isEmpty()) {
-            Toast.makeText(this, "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (!password.equals(confirmPassword)) {
-            binding.tilPassword.setError("Les mots de passe ne correspondent pas");
-            binding.tilConfirmPassword.setError("Les mots de passe ne correspondent pas");
-            return;
-        }
-
-        // Créer la requête d'inscription
         RegisterRequest registerRequest = new RegisterRequest();
         registerRequest.setNom(firstName);
         registerRequest.setPrenom(lastName);
@@ -68,17 +61,25 @@ public class SignUpActivity extends AppCompatActivity {
         registerRequest.setTel(tel);
         registerRequest.setMotDePasse(password);
 
-        // Appeler l'API
         AuthApi authApi = ApiClient.getClient().create(AuthApi.class);
         Call<AuthenticationResponse> call = authApi.register(registerRequest);
-        call.enqueue(new retrofit2.Callback<AuthenticationResponse>() {
+        call.enqueue(new Callback<AuthenticationResponse>() {
             @Override
-            public void onResponse(Call<AuthenticationResponse> call, retrofit2.Response<AuthenticationResponse> response) {
-                if (response.isSuccessful()) {
+            public void onResponse(Call<AuthenticationResponse> call, Response<AuthenticationResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    AuthenticationResponse authResponse = response.body();
+                    SessionManager sessionManager = new SessionManager(SignUpActivity.this);
+                    sessionManager.saveUserSession(authResponse);
+
                     Toast.makeText(SignUpActivity.this, "Inscription réussie !", Toast.LENGTH_SHORT).show();
-                    navigateToSignIn();
+
+                    if (spectacle != null && selectedBillets != null) {
+                        proceedToPayment();
+                    } else {
+                        finish();
+                    }
                 } else {
-                    Toast.makeText(SignUpActivity.this, "Erreur: " + response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "Erreur lors de l'inscription", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -91,24 +92,95 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     private boolean validateForm() {
-        // Implémenter la validation des champs
-        return true;
+        boolean isValid = true;
+
+        // Réinitialiser toutes les erreurs
+        binding.tilNom.setError(null);
+        binding.tilPrenom.setError(null);
+        binding.tilEmail.setError(null);
+        binding.tilTelephone.setError(null);
+        binding.tilPassword.setError(null);
+        binding.tilConfirmPassword.setError(null);
+
+        String firstName = binding.etNom.getText().toString().trim();
+        String lastName = binding.etPrenom.getText().toString().trim();
+        String email = binding.etEmail.getText().toString().trim();
+        String tel = binding.etTelephone.getText().toString().trim();
+        String password = binding.etPassword.getText().toString().trim();
+        String confirmPassword = binding.etConfirmPassword.getText().toString().trim();
+
+        if (firstName.isEmpty()) {
+            binding.tilNom.setError("Le nom est obligatoire");
+            isValid = false;
+        }
+
+        if (lastName.isEmpty()) {
+            binding.tilPrenom.setError("Le prénom est obligatoire");
+            isValid = false;
+        }
+
+        if (email.isEmpty()) {
+            binding.tilEmail.setError("L'email est obligatoire");
+            isValid = false;
+        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            binding.tilEmail.setError("Format d'email invalide");
+            isValid = false;
+        }
+
+        if (tel.isEmpty()) {
+            binding.tilTelephone.setError("Le téléphone est obligatoire");
+            isValid = false;
+        } else if (!tel.matches("\\d{8}")) { // Numéro tunisien 8 chiffres
+            binding.tilTelephone.setError("Téléphone invalide (8 chiffres)");
+            isValid = false;
+        }
+
+        if (password.isEmpty()) {
+            binding.tilPassword.setError("Le mot de passe est obligatoire");
+            isValid = false;
+        } else if (password.length() < 6) {
+            binding.tilPassword.setError("Le mot de passe doit contenir au moins 6 caractères");
+            isValid = false;
+        }
+
+        if (confirmPassword.isEmpty()) {
+            binding.tilConfirmPassword.setError("Veuillez confirmer votre mot de passe");
+            isValid = false;
+        } else if (!password.equals(confirmPassword)) {
+            binding.tilPassword.setError("Les mots de passe ne correspondent pas");
+            binding.tilConfirmPassword.setError("Les mots de passe ne correspondent pas");
+            isValid = false;
+        }
+
+        return isValid;
     }
+
 
     private void navigateToSignIn() {
         Intent intent = new Intent(this, SignInActivity.class);
         passDataToIntent(intent);
+
+        String previousActivity = getIntent().getStringExtra("previous_activity");
+        if (previousActivity != null) {
+            intent.putExtra("previous_activity", previousActivity);
+        }
+
         startActivity(intent);
     }
-/*
+
     private void proceedToPayment() {
         Intent intent = new Intent(this, PaymentActivity.class);
         passDataToIntent(intent);
         startActivity(intent);
-    }*/
+        finish();
+    }
 
     private void passDataToIntent(Intent intent) {
-        intent.putExtra("spectacle", spectacle);
-        intent.putParcelableArrayListExtra("selected_billets", new ArrayList<>(selectedBillets));
+        if (spectacle != null) {
+            intent.putExtra("spectacle", spectacle);
+        }
+        if (selectedBillets != null) {
+            intent.putParcelableArrayListExtra("selected_billets", new ArrayList<>(selectedBillets));
+        }
     }
 }

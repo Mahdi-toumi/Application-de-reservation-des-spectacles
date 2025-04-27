@@ -2,7 +2,6 @@ package com.enicarthage.coulisses.Adapter;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +17,16 @@ import com.enicarthage.coulisses.models.Billet;
 import com.enicarthage.coulisses.util.BilletSelection;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class BilletAdapter extends RecyclerView.Adapter<BilletAdapter.BilletViewHolder> {
     private final List<Billet> billetList;
     private final Context context;
     private final OnBilletSelectedListener listener;
-    private final SparseIntArray selectedQuantities = new SparseIntArray();
+    private final Map<Integer, Integer> selectedQuantities = new HashMap<>();
 
     public interface OnBilletSelectedListener {
         void onBilletsSelected(List<BilletSelection> selectedBillets);
@@ -47,7 +48,7 @@ public class BilletAdapter extends RecyclerView.Adapter<BilletAdapter.BilletView
     @Override
     public void onBindViewHolder(@NonNull BilletViewHolder holder, int position) {
         Billet billet = billetList.get(position);
-        int quantity = selectedQuantities.get(position, 0);
+        int quantity = selectedQuantities.containsKey(position) ? selectedQuantities.get(position) : 0;
         int available = billet.getNombre();
 
         holder.categorie.setText(billet.getCategorie());
@@ -66,19 +67,15 @@ public class BilletAdapter extends RecyclerView.Adapter<BilletAdapter.BilletView
 
         // Bouton moins
         holder.btnDecrease.setOnClickListener(v -> {
-            int newQty = Math.max(0, selectedQuantities.get(position, 0) - 1);
-            selectedQuantities.put(position, newQty);
-            notifyItemChanged(position);
-            notifySelectionChanged();
+            int newQty = Math.max(0, selectedQuantities.getOrDefault(position, 0) - 1);
+            updateQuantity(position, newQty);
         });
 
         // Bouton plus
         holder.btnIncrease.setOnClickListener(v -> {
-            int currentQty = selectedQuantities.get(position, 0);
+            int currentQty = selectedQuantities.getOrDefault(position, 0);
             if (currentQty < available) {
-                selectedQuantities.put(position, currentQty + 1);
-                notifyItemChanged(position);
-                notifySelectionChanged();
+                updateQuantity(position, currentQty + 1);
             } else {
                 holder.error.setText("Quantité maximale atteinte");
                 holder.error.setVisibility(View.VISIBLE);
@@ -86,14 +83,22 @@ public class BilletAdapter extends RecyclerView.Adapter<BilletAdapter.BilletView
         });
     }
 
+    private void updateQuantity(int position, int newQuantity) {
+        if (newQuantity > 0) {
+            selectedQuantities.put(position, newQuantity);
+        } else {
+            selectedQuantities.remove(position);
+        }
+        notifyItemChanged(position);
+        notifySelectionChanged();
+    }
+
     private void notifySelectionChanged() {
         List<BilletSelection> selectedBillets = new ArrayList<>();
-        for (int i = 0; i < selectedQuantities.size(); i++) {
-            int position = selectedQuantities.keyAt(i);
-            int quantity = selectedQuantities.valueAt(i);
-            if (quantity > 0) {
-                selectedBillets.add(new BilletSelection(billetList.get(position), quantity));
-            }
+        for (Map.Entry<Integer, Integer> entry : selectedQuantities.entrySet()) {
+            int position = entry.getKey();
+            int quantity = entry.getValue();
+            selectedBillets.add(new BilletSelection(billetList.get(position), quantity));
         }
         listener.onBilletsSelected(selectedBillets);
     }

@@ -9,6 +9,7 @@ import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,10 +32,10 @@ import java.util.Locale;
 import java.util.Map;
 
 
-public class DetailSpectacleActivity extends AppCompatActivity {
+public class DetailSpectacleActivity extends BaseActivity {
 
     private ImageView imageView;
-    private TextView titre, date, heure, lieu, description, duree ,prixMin;
+    private TextView titre, date, heure, lieu, description, duree ,prixMin , spectateur;
     private Button btnReserve;
     private Double lat = null ;
     private Double lng = null ;
@@ -53,11 +54,16 @@ public class DetailSpectacleActivity extends AppCompatActivity {
         date = findViewById(R.id.detailDate);
         heure = findViewById(R.id.detailHeure);
         lieu = findViewById(R.id.detailLieu);
+        spectateur = findViewById(R.id.detailSpectateurs);
         description = findViewById(R.id.detailDescription);
         duree = findViewById(R.id.detailDuree);
         btnReserve = findViewById(R.id.btnReserver);
         prixMin = findViewById(R.id.detailPrice) ;
 
+        setupUserMenu();
+
+        ImageButton btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
 
         // Utilise l'id correct pour le bouton
 
@@ -72,6 +78,7 @@ public class DetailSpectacleActivity extends AppCompatActivity {
             lieu.setText("Lieu : " + spectacle.getLieu().getNom());
             description.setText(spectacle.getDescription());
             duree.setText("Duree : " + spectacle.getFormattedDuree());
+            spectateur.setText("Spectateurs : " + spectacle.getNbSpectateurs());
 
             Bundle bundle = getIntent().getBundleExtra("prixMinMapBundle");
             Map<Long, Double> prixMinMap = new HashMap<>();

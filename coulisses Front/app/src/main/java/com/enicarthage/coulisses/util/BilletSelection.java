@@ -9,20 +9,22 @@ public class BilletSelection implements Parcelable {
     private Billet billet;
     private int quantity;
 
+    // Constructor
     public BilletSelection(Billet billet, int quantity) {
         this.billet = billet;
         this.quantity = quantity;
     }
 
+    // Parcelable implementation
     protected BilletSelection(Parcel in) {
         billet = in.readParcelable(Billet.class.getClassLoader());
-        quantity = in.readInt();
+        quantity = in.readInt(); // Make sure this matches writeToParcel
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeParcelable(billet, flags);
-        dest.writeInt(quantity);
+        dest.writeInt(quantity); // Must be in same order as constructor reads
     }
 
     @Override
@@ -42,20 +44,7 @@ public class BilletSelection implements Parcelable {
         }
     };
 
-    // Getters and setters
-    public Billet getBillet() {
-        return billet;
-    }
-
-    public void setBillet(Billet billet) {
-        this.billet = billet;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+    // Getters
+    public Billet getBillet() { return billet; }
+    public int getQuantity() { return quantity; }
 }

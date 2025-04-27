@@ -35,8 +35,44 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_marginStart="8dp"/>
+
+            <!-- Espace flexible pour pousser les éléments à droite -->
+            <Space
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <!-- Vue utilisateur -->
+            <LinearLayout
+                android:id="@+id/userLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground"
+                >
+
+                <TextView
+                    android:id="@+id/userText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Login"
+                    android:textColor="@color/secondary" />
+
+                <ImageView
+                    android:id="@+id/userIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/ic_login"
+                    app:tint="@color/secondary" />
+            </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
+
 
     <!-- Search card -->
     <com.google.android.material.card.MaterialCardView

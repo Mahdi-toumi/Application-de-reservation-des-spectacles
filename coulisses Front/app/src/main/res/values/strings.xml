@@ -18,6 +18,16 @@
     <string name="no_tickets_available">Aucun billet disponible pour ce spectacle</string>
     <string name="select_ticket">Veuillez sélectionner un billet</string>
     <string name="loading_error">Erreur de chargement des billets</string>
+    <string name="title_activity_payment">PaymentActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="view_all_spectacles">Voir tous les spectacles</string>
     <!-- Ajoute d'autres chaînes nécessaires -->
 
 

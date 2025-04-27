@@ -37,7 +37,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SpectacleListActivity extends AppCompatActivity {
+public class SpectacleListActivity extends  BaseActivity {
     private RecyclerView recyclerView;
     private SpectacleAdapter adapter;
     private SpectacleApi spectacleApi;
@@ -59,6 +59,8 @@ public class SpectacleListActivity extends AppCompatActivity {
         initViews();
         setupListeners();
         setupDateTimePickers(); // Nouvelle méthode pour configurer les pickers
+
+        setupUserMenu();
 
         spectacleApi = ApiClient.getClient().create(SpectacleApi.class);
         loadSpectacles();

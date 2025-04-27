@@ -26,7 +26,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SpectacleTitlesActivity extends AppCompatActivity {
+public class SpectacleTitlesActivity extends BaseActivity {
 
     private RecyclerView recyclerView;
     private SpectacleTitlesAdapter adapter;

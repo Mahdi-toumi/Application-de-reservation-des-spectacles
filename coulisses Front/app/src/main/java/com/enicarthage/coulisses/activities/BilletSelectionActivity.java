@@ -2,6 +2,7 @@ package com.enicarthage.coulisses.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.enicarthage.coulisses.models.Spectacle;
 import com.enicarthage.coulisses.network.ApiClient;
 import com.enicarthage.coulisses.network.BilletApi;
 import com.enicarthage.coulisses.util.BilletSelection;
+import com.enicarthage.coulisses.util.SessionManager;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
@@ -39,13 +41,16 @@ public class BilletSelectionActivity extends AppCompatActivity implements Billet
     private Spectacle spectacle;
     private MaterialButton btnContinue;
     private List<BilletSelection> selectedBillets = new ArrayList<>();
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_billet_selection);
 
+        sessionManager = new SessionManager(this);
         spectacle = getIntent().getParcelableExtra("spectacle");
+
         if (spectacle == null) {
             Toast.makeText(this, "Spectacle non disponible", Toast.LENGTH_SHORT).show();
             finish();
@@ -60,7 +65,11 @@ public class BilletSelectionActivity extends AppCompatActivity implements Billet
         btnContinue.setEnabled(false);
         btnContinue.setOnClickListener(v -> {
             if (!selectedBillets.isEmpty()) {
-                proceedToAuthentication();
+                if (sessionManager.isLoggedIn()) {
+                    proceedToPayment();
+                } else {
+                    proceedToAuthentication();
+                }
             }
         });
     }
@@ -146,12 +155,17 @@ public class BilletSelectionActivity extends AppCompatActivity implements Billet
         btnContinue.setText(buttonText);
     }
 
-
     private void proceedToAuthentication() {
         Intent intent = new Intent(this, AuthChoiceActivity.class);
         intent.putExtra("spectacle", spectacle);
-        intent.putParcelableArrayListExtra("selected_billets",
-                new ArrayList<>(selectedBillets));
+        intent.putParcelableArrayListExtra("selected_billets", new ArrayList<>(selectedBillets));
+        startActivity(intent);
+    }
+
+    private void proceedToPayment() {
+        Intent intent = new Intent(this, PaymentActivity.class);
+        intent.putExtra("spectacle", spectacle);
+        intent.putParcelableArrayListExtra("selected_billets", new ArrayList<>(selectedBillets));
         startActivity(intent);
     }
 }

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:background="@color/dark_background">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -125,7 +127,6 @@
                     <ImageView
                         android:layout_width="16dp"
                         android:layout_height="16dp"
-                        android:layout_marginEnd="6dp"
                         android:src="@drawable/ic_clock"
                         app:tint="@color/secondary_text" />
 
@@ -147,12 +148,30 @@
                     <ImageView
                         android:layout_width="16dp"
                         android:layout_height="16dp"
-                        android:layout_marginEnd="6dp"
                         android:src="@drawable/ic_duration"
                         app:tint="@color/secondary_text" />
 
                     <TextView
                         android:id="@+id/detailDuree"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/secondary_text"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_people"
+                        app:tint="@color/secondary_text" />
+
+                    <TextView
+                        android:id="@+id/detailSpectateurs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/secondary_text"
@@ -184,6 +203,8 @@
                         android:textColor="@color/secondary_text"
                         android:textSize="14sp" />
                 </LinearLayout>
+
+
 
                 <!-- Added Website Information -->
 
@@ -306,7 +327,7 @@
                                 android:background="?attr/selectableItemBackgroundBorderless"
                                 android:contentDescription="@string/gallery_image"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/placeholder" />
+                                android:src="@drawable/spectacle3" />
 
                             <ImageView
                                 android:layout_width="120dp"
@@ -315,7 +336,7 @@
                                 android:background="?attr/selectableItemBackgroundBorderless"
                                 android:contentDescription="@string/gallery_image"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/placeholder" />
+                                android:src="@drawable/spectacle1" />
 
                             <ImageView
                                 android:layout_width="120dp"
@@ -323,7 +344,7 @@
                                 android:background="?attr/selectableItemBackgroundBorderless"
                                 android:contentDescription="@string/gallery_image"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/placeholder" />
+                                android:src="@drawable/spectacle2" />
                         </LinearLayout>
                     </HorizontalScrollView>
                 </LinearLayout>

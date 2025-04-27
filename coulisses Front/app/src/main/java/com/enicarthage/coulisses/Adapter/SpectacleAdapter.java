@@ -58,6 +58,7 @@ public class SpectacleAdapter extends RecyclerView.Adapter<SpectacleAdapter.Spec
         holder.date.setText(spectacle.getFormattedDate());
         holder.heure.setText(spectacle.getFormattedHeureDebut());
         holder.duree.setText(spectacle.getFormattedDuree());
+        holder.lieu.setText(spectacle.getLieu().getNom());
 
         Double prixMin = prixMinMap.get(spectacle.getId());
         String prixText = (prixMin != null && prixMin > 0) ?
@@ -78,13 +79,14 @@ public class SpectacleAdapter extends RecyclerView.Adapter<SpectacleAdapter.Spec
     }
 
     public static class SpectacleViewHolder extends RecyclerView.ViewHolder {
-        TextView titre, date, heure, duree, prixmin ;
+        TextView titre, date, heure, duree, prixmin , lieu;
         ImageView image;
 
         public SpectacleViewHolder(@NonNull View itemView) {
             super(itemView);
             titre = itemView.findViewById(R.id.titreText);
             date = itemView.findViewById(R.id.dateText);
+            lieu = itemView.findViewById(R.id.spectacleLieu);
             heure = itemView.findViewById(R.id.heureText);
             image = itemView.findViewById(R.id.spectacleImage);
             duree = itemView.findViewById(R.id.spectacleDuree);

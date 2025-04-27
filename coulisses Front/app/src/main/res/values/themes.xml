@@ -12,6 +12,12 @@
         <item name="materialButtonStyle">@style/Widget.SpectaclePlus.Button</item>
     </style>
 
+    <style name="ViewPager2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
     <style name="ExpandedAppBar" parent="@android:style/TextAppearance">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">28sp</item>

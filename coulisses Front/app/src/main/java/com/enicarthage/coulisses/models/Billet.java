@@ -9,16 +9,7 @@ public class Billet implements Parcelable {
     private Double prix;
     private Spectacle spectacle;
     private String vendu;
-
-    private int nombre ;
-
-    public int getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(int nombre) {
-        this.nombre = nombre;
-    }
+    private int nombre;
 
     public Billet() {
         // Constructeur vide
@@ -38,7 +29,7 @@ public class Billet implements Parcelable {
         }
         spectacle = in.readParcelable(Spectacle.class.getClassLoader());
         vendu = in.readString();
-        nombre = in.dataAvail();
+        nombre = in.readInt(); // ✅ Correction ici
     }
 
     @Override
@@ -58,7 +49,7 @@ public class Billet implements Parcelable {
         }
         dest.writeParcelable(spectacle, flags);
         dest.writeString(vendu);
-        dest.writeInt(nombre);
+        dest.writeInt(nombre); // ✅ Tu écris nombre, donc il faut le lire avec readInt()
     }
 
     @Override
@@ -117,5 +108,13 @@ public class Billet implements Parcelable {
 
     public void setVendu(String vendu) {
         this.vendu = vendu;
+    }
+
+    public int getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(int nombre) {
+        this.nombre = nombre;
     }
 }
