@@ -37,7 +37,7 @@ public class FeaturedSpectaclesAdapter extends RecyclerView.Adapter<SpectacleTit
     @NonNull
     @Override
     public SpectacleTitlesAdapter.SpectacleTitleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_spectacle_simple, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_featured_spectacle, parent, false);
         return new SpectacleTitlesAdapter.SpectacleTitleViewHolder(view);
     }
 

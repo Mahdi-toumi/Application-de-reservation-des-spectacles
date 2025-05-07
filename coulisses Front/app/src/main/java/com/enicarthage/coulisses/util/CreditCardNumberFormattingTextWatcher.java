@@ -4,7 +4,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 
 public class CreditCardNumberFormattingTextWatcher implements TextWatcher {
-    private boolean isFormatting;
+    private boolean isFormatting;  // Prevent recursive formatting
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -18,21 +18,25 @@ public class CreditCardNumberFormattingTextWatcher implements TextWatcher {
 
         isFormatting = true;
 
-        // Remove all non-digit characters
+        // Remove all non-digit characters (to ensure we only have digits)
         String digits = s.toString().replaceAll("[^\\d]", "");
 
-        // Format as XXXX XXXX XXXX XXXX
+        // Format the digits into groups of 4, adding a space between them
         StringBuilder formatted = new StringBuilder();
+
+        // Loop through the digits and add a space after every 4 digits
         for (int i = 0; i < digits.length(); i++) {
             if (i > 0 && i % 4 == 0) {
-                formatted.append(" ");
+                formatted.append(" ");  // Add a space every 4 digits
             }
             formatted.append(digits.charAt(i));
         }
 
-        // Update the text
+        // Replace the original text with the formatted text
         s.replace(0, s.length(), formatted.toString());
 
+        // Ensure the cursor remains at the correct position
+        // (This should normally work well since we are directly modifying the Editable object)
         isFormatting = false;
     }
 }

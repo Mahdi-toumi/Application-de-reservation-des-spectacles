@@ -38,6 +38,7 @@ public class PaymentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityPaymentBinding.inflate(getLayoutInflater());
+
         setContentView(binding.getRoot());
 
         if (getIntent() != null) {
@@ -91,7 +92,12 @@ public class PaymentActivity extends AppCompatActivity {
         }
 
         binding.tvTicketsInfo.setText(ticketsInfo.toString());
-        binding.tvTotalAmount.setText(String.format(Locale.getDefault(), "%.2f DT", total));
+        binding.tvTotalAmount.setText(String.format(Locale.getDefault(), "%.2f DT", total)
+
+        );
+
+        binding.etCardNumber.addTextChangedListener(new CreditCardNumberFormattingTextWatcher());
+
 
         // Définir la date et heure actuelles comme date par défaut
         binding.etCardNumber.addTextChangedListener(new CreditCardNumberFormattingTextWatcher());

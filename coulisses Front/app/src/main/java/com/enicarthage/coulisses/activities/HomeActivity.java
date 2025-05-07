@@ -1,6 +1,7 @@
 package com.enicarthage.coulisses.activities;
 
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -53,7 +54,33 @@ public class HomeActivity extends AppCompatActivity {
             btnViewAll = findViewById(R.id.btnViewAll);
 
             // Configuration du layout
-            recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+            GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
+            layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int position) {
+                    if (position == 0 ){
+                        return 3 ;
+                    }
+                    else  if (position == 2 ||position == 3){
+                        return 2 ;
+                    }
+                    else  {
+                        return 1 ;
+                    } // Le premier prend toute la largeur, les autres moitié
+                }
+            });
+
+            recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+                @Override
+                public void getItemOffsets(@NonNull Rect outRect, @NonNull View view,
+                                           @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                    // Pas de marge entre les items
+                    outRect.set(0, 0, 0, 0);
+                }
+            });
+
+
+            recyclerView.setLayoutManager(layoutManager);
 
             // Gestion du clic sur le bouton
             btnViewAll.setOnClickListener(v -> {
