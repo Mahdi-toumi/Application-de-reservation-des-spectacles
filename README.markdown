@@ -63,3 +63,11 @@ Coulisses is an Android mobile application developed by Mahdi Toumi at the Natio
 
 ## Acknowledgments
 Developed as part of the Mobile Development course at the National Engineering School of Carthage, University of Carthage, for the academic year 2024-2025, under the supervision of Mme Olfa Lamouchi.
+
+
+
+![Spectacles](https://github.com/user-attachments/assets/324d9157-fba1-41cd-9d55-471614242475)
+![Spectacle description](https://github.com/user-attachments/assets/3b52c0f7-0018-4ae8-90d1-65c16542e536)
+![Choix des billets](https://github.com/user-attachments/assets/fda0f99e-e14d-42f8-962b-e2a0b2954d59)
+
+
