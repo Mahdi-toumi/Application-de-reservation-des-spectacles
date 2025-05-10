@@ -51,6 +51,20 @@ Coulisses is an Android mobile application developed by Mahdi Toumi at the Natio
 - Performance optimization needed for low-end devices.
 - No multi-platform support (Android only).
 
+## UI Screenshots
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/935afbf6-5b5c-452d-a6fe-0d7040aa1d60" alt="Home" width="200"/>
+  <img src="https://github.com/user-attachments/assets/664ca0c0-84c4-4195-8c27-1cb85193d6a7" alt="SignUp" width="200"/>
+  <img src="https://github.com/user-attachments/assets/223bd472-4b1a-4510-b988-4d7839b0b982" alt="SignIn" width="200"/>
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/324d9157-fba1-41cd-9d55-471614242475" alt="Spectacles" width="200"/>
+  <img src="https://github.com/user-attachments/assets/3b52c0f7-0018-4ae8-90d1-65c16542e536" alt="Spectacle description" width="200"/>
+  <img src="https://github.com/user-attachments/assets/fda0f99e-e14d-42f8-962b-e2a0b2954d59" alt="Choix des billets" width="200"/>
+</p>
+
+
 ## Future Improvements
 - Develop a robust backend for real-time data synchronization.
 - Implement personalized spectacle recommendations based on user preferences.
@@ -62,12 +76,7 @@ Coulisses is an Android mobile application developed by Mahdi Toumi at the Natio
 - **Mahdi Toumi**
 
 ## Acknowledgments
-Developed as part of the Mobile Development course at the National Engineering School of Carthage, University of Carthage, for the academic year 2024-2025, under the supervision of Mme Olfa Lamouchi.
+Developed as part of the Mobile Development course at the National Engineering School of Carthage, University of Carthage, for the academic year 2024-2025.
 
-
-
-![Spectacles](https://github.com/user-attachments/assets/324d9157-fba1-41cd-9d55-471614242475)
-![Spectacle description](https://github.com/user-attachments/assets/3b52c0f7-0018-4ae8-90d1-65c16542e536)
-![Choix des billets](https://github.com/user-attachments/assets/fda0f99e-e14d-42f8-962b-e2a0b2954d59)
 
 
