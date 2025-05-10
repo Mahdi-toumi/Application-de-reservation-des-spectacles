@@ -21,7 +21,7 @@ Coulisses is an Android mobile application developed by Mahdi Toumi at the Natio
    - Clone the repository: `git clone https://github.com/yourusername/coulisses.git`
    - Open the project in Android Studio.
 3. **Configuration**:
-   - Update the API base URL in `ApiClient.java` (default: `http://192.168.1.11:8081/`).
+   - Update the API base URL in `ApiClient.java` .
    - Ensure dependencies (Retrofit, Glide, Gson) are included in `build.gradle`.
 4. **Run**:
    - Build and run the app on an emulator or physical device.
@@ -60,9 +60,6 @@ Coulisses is an Android mobile application developed by Mahdi Toumi at the Natio
 
 ## Contributors
 - **Mahdi Toumi**
-
-## License
-This project is licensed under the MIT License. See the `LICENSE` file for details.
 
 ## Acknowledgments
 Developed as part of the Mobile Development course at the National Engineering School of Carthage, University of Carthage, for the academic year 2024-2025, under the supervision of Mme Olfa Lamouchi.
